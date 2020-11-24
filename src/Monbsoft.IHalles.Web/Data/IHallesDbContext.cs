@@ -14,8 +14,9 @@ namespace Monbsoft.IHalles.Web.Data
         {
         }
 
+        public DbSet<Address> Addresses { get; set; }
         public DbSet<IHalle> IHalles { get; set; }
-
+      
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

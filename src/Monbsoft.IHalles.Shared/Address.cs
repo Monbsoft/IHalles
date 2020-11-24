@@ -12,7 +12,7 @@ namespace Monbsoft.IHalles.Shared
         public int Id { get; set; }
 
         [Required, MaxLength(100)]
-        public string Name { get; set; }
+        public string Line { get; set; }
 
         [Required, MaxLength(50)]
         public string City { get; set; }
