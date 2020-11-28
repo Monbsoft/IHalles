@@ -23,10 +23,10 @@ namespace Monbsoft.IHalles.Shared
         public string Description { get; set; }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public DateTime Created { get; set; }
+        public DateTime Created { get; set; } = DateTime.UtcNow;
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime Updated { get; set; }
+        public DateTime? Updated { get; set; }
 
         public HUser Creator { get; set; }
 

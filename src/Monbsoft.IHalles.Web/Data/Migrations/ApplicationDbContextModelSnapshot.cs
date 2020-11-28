@@ -282,7 +282,7 @@ namespace Monbsoft.IHalles.Web.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("Updated")
+                    b.Property<DateTime?>("Updated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2");
 

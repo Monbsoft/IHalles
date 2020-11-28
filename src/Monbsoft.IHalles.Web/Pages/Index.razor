@@ -5,3 +5,32 @@
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-6" style="height: 16rem;">
+            <Map Zoom="13" Markers="@_markers">
+            </Map>
+        </div>
+    </div>
+</div>
+
+@code {
+    private List<Marker> _markers;
+
+    protected override void OnInitialized()
+    {
+        _markers = new List<Marker>
+    {
+            new Marker
+            {
+                Description = "test",
+                X = 6.79631d,
+                Y = 47.50652d,
+                ShowPopup = true
+            }
+        };
+
+        base.OnInitialized();
+    }
+}

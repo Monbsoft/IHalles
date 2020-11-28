@@ -10,8 +10,8 @@ using Monbsoft.IHalles.Web.Data;
 namespace Monbsoft.IHalles.Web.Data.Migrations
 {
     [DbContext(typeof(IHallesDbContext))]
-    [Migration("20201117232742_AddIHalles")]
-    partial class AddIHalles
+    [Migration("20201127230059_AddIHalle")]
+    partial class AddIHalle
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -284,7 +284,7 @@ namespace Monbsoft.IHalles.Web.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("Updated")
+                    b.Property<DateTime?>("Updated")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2");
 
