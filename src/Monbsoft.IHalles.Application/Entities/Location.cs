@@ -1,4 +1,4 @@
-﻿namespace Monbsoft.IHalles.Shared
+﻿namespace Monbsoft.IHalles.Application.Entities
 {
     public class Location
     {

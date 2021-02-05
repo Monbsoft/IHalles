@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Monbsoft.IHalles.Shared
+namespace Monbsoft.IHalles.Application.Entities
 {
     public class IHalle
     {
@@ -27,8 +27,6 @@ namespace Monbsoft.IHalles.Shared
 
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         public DateTime? Updated { get; set; }
-
-        public HUser Creator { get; set; }
 
     }
 }

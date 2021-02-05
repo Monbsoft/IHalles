@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Monbsoft.IHalles.Shared
+namespace Monbsoft.IHalles.Infrastructure.Identity
 {
     public class HUser : IdentityUser
     {

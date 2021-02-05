@@ -5,9 +5,13 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monbsoft.IHalles.Web", "src\Monbsoft.IHalles.Web\Monbsoft.IHalles.Web.csproj", "{6C83F9F6-F760-474C-A4F4-563F8696BFC2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monbsoft.IHalles.Shared", "src\Monbsoft.IHalles.Shared\Monbsoft.IHalles.Shared.csproj", "{80F4CE91-3907-4FB7-99E1-8DB526AE45A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IHallesMap", "src\IHallesMap\IHallesMap.csproj", "{8BD40D47-5836-4D1C-872B-A1333EF900C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IHallesMap", "src\IHallesMap\IHallesMap.csproj", "{8BD40D47-5836-4D1C-872B-A1333EF900C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monbsoft.IHalles.Application", "src\Monbsoft.IHalles.Application\Monbsoft.IHalles.Application.csproj", "{2440AB39-89F1-41E6-922A-E4D11C82DCC7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monbsoft.IHalles.Infrastructure", "src\Monbsoft.IHalles.Infrastructure\Monbsoft.IHalles.Infrastructure.csproj", "{A0BD307B-A7F4-467D-8824-A92CBE61CDE5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monbsoft.IHalles.SharedKernel", "src\Monbsoft.IHalles.SharedKernel\Monbsoft.IHalles.SharedKernel.csproj", "{498EAF75-CE74-455E-A2AA-ACF9DB491AC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +23,22 @@ Global
 		{6C83F9F6-F760-474C-A4F4-563F8696BFC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6C83F9F6-F760-474C-A4F4-563F8696BFC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6C83F9F6-F760-474C-A4F4-563F8696BFC2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80F4CE91-3907-4FB7-99E1-8DB526AE45A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80F4CE91-3907-4FB7-99E1-8DB526AE45A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80F4CE91-3907-4FB7-99E1-8DB526AE45A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80F4CE91-3907-4FB7-99E1-8DB526AE45A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8BD40D47-5836-4D1C-872B-A1333EF900C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8BD40D47-5836-4D1C-872B-A1333EF900C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BD40D47-5836-4D1C-872B-A1333EF900C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BD40D47-5836-4D1C-872B-A1333EF900C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2440AB39-89F1-41E6-922A-E4D11C82DCC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2440AB39-89F1-41E6-922A-E4D11C82DCC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2440AB39-89F1-41E6-922A-E4D11C82DCC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2440AB39-89F1-41E6-922A-E4D11C82DCC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0BD307B-A7F4-467D-8824-A92CBE61CDE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0BD307B-A7F4-467D-8824-A92CBE61CDE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0BD307B-A7F4-467D-8824-A92CBE61CDE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0BD307B-A7F4-467D-8824-A92CBE61CDE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{498EAF75-CE74-455E-A2AA-ACF9DB491AC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{498EAF75-CE74-455E-A2AA-ACF9DB491AC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{498EAF75-CE74-455E-A2AA-ACF9DB491AC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{498EAF75-CE74-455E-A2AA-ACF9DB491AC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
