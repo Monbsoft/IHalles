@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Monbsoft.IHalles.Infrastructure.Data;
 using Monbsoft.IHalles.Infrastructure.Identity;
 using Monbsoft.IHalles.Web.Areas.Identity;
 using Monbsoft.IHalles.Web.Data;

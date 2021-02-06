@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Monbsoft.IHalles.Infrastructure.Data;
 using Monbsoft.IHalles.Web.Data;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace Monbsoft.IHalles.Web
                 try
                 {
                     var context = services.GetRequiredService<IHallesDbContext>();
-                    DbInitializer.Initialize(context);
+                    //DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)
                 {
