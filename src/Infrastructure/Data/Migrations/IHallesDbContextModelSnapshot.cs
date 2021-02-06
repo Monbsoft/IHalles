@@ -3,23 +3,21 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Monbsoft.IHalles.Infrastructure.Data;
 
-namespace Monbsoft.IHalles.Web.Data.Migrations
+namespace Monbsoft.IHalles.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(IHallesDbContext))]
-    [Migration("20201127230059_AddIHalle")]
-    partial class AddIHalle
+    partial class IHallesDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "5.0.2");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -84,10 +82,6 @@ namespace Monbsoft.IHalles.Web.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -139,8 +133,6 @@ namespace Monbsoft.IHalles.Web.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -227,54 +219,18 @@ namespace Monbsoft.IHalles.Web.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Monbsoft.IHalles.Shared.Address", b =>
+            modelBuilder.Entity("Monbsoft.IHalles.Application.Models.IHalle", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("City")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("Line")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Region")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Addresses");
-                });
-
-            modelBuilder.Entity("Monbsoft.IHalles.Shared.IHalle", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int?>("AddressId")
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Created")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2");
 
                     b.Property<string>("CreatorId")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -290,20 +246,7 @@ namespace Monbsoft.IHalles.Web.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("CreatorId")
-                        .IsUnique()
-                        .HasFilter("[CreatorId] IS NOT NULL");
-
                     b.ToTable("IHalles");
-                });
-
-            modelBuilder.Entity("Monbsoft.IHalles.Shared.HUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.HasDiscriminator().HasValue("HUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -357,22 +300,37 @@ namespace Monbsoft.IHalles.Web.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Monbsoft.IHalles.Shared.IHalle", b =>
+            modelBuilder.Entity("Monbsoft.IHalles.Application.Models.IHalle", b =>
                 {
-                    b.HasOne("Monbsoft.IHalles.Shared.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId");
-
-                    b.HasOne("Monbsoft.IHalles.Shared.HUser", "Creator")
-                        .WithOne()
-                        .HasForeignKey("Monbsoft.IHalles.Shared.IHalle", "CreatorId");
-
-                    b.OwnsOne("Monbsoft.IHalles.Shared.Location", "Location", b1 =>
+                    b.OwnsOne("Monbsoft.IHalles.Application.Models.Address", "Address", b1 =>
                         {
-                            b1.Property<int>("IHalleId")
-                                .ValueGeneratedOnAdd()
-                                .HasColumnType("int")
-                                .UseIdentityColumn();
+                            b1.Property<Guid>("IHalleId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("City")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("PostalCode")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Region")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.Property<string>("Street")
+                                .HasColumnType("nvarchar(max)");
+
+                            b1.HasKey("IHalleId");
+
+                            b1.ToTable("IHalles");
+
+                            b1.WithOwner()
+                                .HasForeignKey("IHalleId");
+                        });
+
+                    b.OwnsOne("Monbsoft.IHalles.Application.Models.Location", "Location", b1 =>
+                        {
+                            b1.Property<Guid>("IHalleId")
+                                .HasColumnType("uniqueidentifier");
 
                             b1.Property<double>("Latitude")
                                 .HasColumnType("float");
@@ -388,9 +346,8 @@ namespace Monbsoft.IHalles.Web.Data.Migrations
                                 .HasForeignKey("IHalleId");
                         });
 
-                    b.Navigation("Address");
-
-                    b.Navigation("Creator");
+                    b.Navigation("Address")
+                        .IsRequired();
 
                     b.Navigation("Location")
                         .IsRequired();

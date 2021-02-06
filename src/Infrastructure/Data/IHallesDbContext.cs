@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Monbsoft.IHalles.Application.Entities;
+using Monbsoft.IHalles.Application.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,7 +14,6 @@ namespace Monbsoft.IHalles.Infrastructure.Data
         {
         }
 
-        public DbSet<Address> Addresses { get; set; }
         public DbSet<IHalle> IHalles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -23,6 +22,7 @@ namespace Monbsoft.IHalles.Infrastructure.Data
 
             // IHalle
             builder.Entity<IHalle>().OwnsOne(ih => ih.Location);
+            builder.Entity<IHalle>().OwnsOne(ih => ih.Address);
         }
     }
 }
