@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Monbsoft.IHalles.Application.Models
 {
-    public class IHalle : BaseEntry, IAggregateRoot
+    public class IHalle : BaseEntity, IAggregateRoot
     {
         public IHalle(string name, Address address, string description, Location location)
         {

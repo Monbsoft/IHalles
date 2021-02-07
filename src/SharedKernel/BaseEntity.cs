@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Monbsoft.IHalles.SharedKernel
 {
-    public abstract class BaseEntry
+    public abstract class BaseEntity
     {
         public Guid Id { get; set; }
 
