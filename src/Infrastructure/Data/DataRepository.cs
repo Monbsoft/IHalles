@@ -28,7 +28,7 @@ namespace Monbsoft.IHalles.Infrastructure.Data
             return await _dataContext.Set<T>().ToListAsync(cancellationToken);
         }
 
-        public ValueTask<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async ValueTask<T> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
         {
             var keyValues = new object[] { id };
             return await _dataContext.Set<T>().FindAsync(keyValues, cancellationToken);
