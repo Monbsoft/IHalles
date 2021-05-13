@@ -5,10 +5,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Monbsoft.IHalles.Application.Interfaces;
 using Monbsoft.IHalles.Infrastructure.Data;
+using Monbsoft.IHalles.Infrastructure.Data.Repositories;
 using Monbsoft.IHalles.Infrastructure.Identity;
 using Monbsoft.IHalles.Web.Areas.Identity;
 using Monbsoft.IHalles.Web.Data;
+using IHalleRepository = Monbsoft.IHalles.Application.Interfaces.IHalleRepository;
 
 namespace Monbsoft.IHalles.Web
 {
@@ -34,6 +37,11 @@ namespace Monbsoft.IHalles.Web
             services.AddServerSideBlazor();
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<HUser>>();
             services.AddDatabaseDeveloperPageExceptionFilter();
+
+            // Data repositories
+            services.AddSingleton<IHalleRepository, HalleRepository>();
+
+
             services.AddSingleton<WeatherForecastService>();
         }
 
