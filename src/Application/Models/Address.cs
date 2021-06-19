@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Monbsoft.IHalles.Application.Models
 {
-    public class Address
+    public record Address
     {
         public Address(string street, string city, string region, string postalCode)
         {

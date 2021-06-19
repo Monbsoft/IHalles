@@ -7,8 +7,8 @@
 @code {
     private IEnumerable<IHalle> _halles;
 
-        protected override void OnInitialized()
-        {
-            
-        }
+    protected override void OnInitialized()
+    {
+        _halles = HalleRepository.GetLastHalles();
+    }
 }

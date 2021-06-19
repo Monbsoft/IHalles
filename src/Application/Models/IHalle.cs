@@ -9,10 +9,10 @@ namespace Monbsoft.IHalles.Application.Models
     {
         public IHalle(string name, Address address, string description, Location location)
         {
-            Name = Check.NotNullOrEmpty(name, nameof(name));
-            Address = Check.NotNull(address, nameof(address));           
-            Description = Check.NotNullOrEmpty(description, nameof(description));
-            Location = Check.NotNull(location, nameof(location));
+            Name = name;
+            Address = address;           
+            Description = description;
+            Location = location;
         }
 
         private IHalle()
