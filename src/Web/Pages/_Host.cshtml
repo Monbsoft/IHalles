@@ -1,0 +1,41 @@
+﻿@page "/"
+@namespace Monbsoft.IHalles.Web.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IHalles est une communauté des passionnés de produits locaux, du terroir, du savoir-faire artisanal...</title>
+    <base href="~/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="Monbsoft.IHalles.Web.styles.css" rel="stylesheet" />
+    <link href="_content/IHallesMap/leaflet/leaflet.css" rel="stylesheet" />
+    <meta property="og:site_name" content="IHalles" />
+    <meta property="og:type" content="website" />
+    <meta content="iHalles est une communauté des passionnés de produits locaux, du terroir, du savoir-faire artisanal local... Enregistrer les adresses de vos ihalles favorites, Raconter vos découvertes dans ces ihalles avec la communauté et découvrer des bonnes ihalles" og:description />
+</head>
+<body>
+    <component type="typeof(App)" render-mode="ServerPrerendered" />
+
+    <div id="blazor-error-ui">
+        <environment include="Staging,Production">
+            An error has occurred. This application may no longer respond until reloaded.
+        </environment>
+        <environment include="Development">
+            An unhandled exception has occurred. See browser dev tools for details.
+        </environment>
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+    <script src="_framework/blazor.server.js"></script>
+    <script src="_content/IHallesMap/deliveryMap.js"></script>
+    <script src="_content/IHallesMap/leaflet/leaflet.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+﻿@page "/ihalles"
+@attribute [Authorize]
+@inject IHalleRepository HalleRepository 
+
+<h3>Index</h3>
+
+@code {
+    private IEnumerable<IHalle> _halles;
+
+    protected override void OnInitialized()
+    {
+        _halles = HalleRepository.GetLastHalles();
+    }
+}
