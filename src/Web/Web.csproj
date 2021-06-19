@@ -22,14 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Areas\Identity\Pages\Logout.cshtml">
+    <Content Update="Areas\Identity\Pages\Account\Logout.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Areas\Identity\Pages\Account\" />
   </ItemGroup>
 
 </Project>

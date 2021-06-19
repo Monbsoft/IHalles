@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -10,6 +11,8 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Monbsoft.IHalles.Infrastructure.Data;
 using Monbsoft.IHalles.Infrastructure.Data.Repositories;
 using Monbsoft.IHalles.Web.Data;
+using System;
+using System.Threading.Tasks;
 using IHalleRepository = Monbsoft.IHalles.Application.Interfaces.IHalleRepository;
 
 namespace Monbsoft.IHalles.Web
@@ -72,6 +75,32 @@ namespace Monbsoft.IHalles.Web
 
                 // Configure the Claims Issuer to be Auth0
                 options.ClaimsIssuer = "Auth0";
+
+                options.Events = new OpenIdConnectEvents
+                {
+                    // handle the logout redirection
+                    OnRedirectToIdentityProviderForSignOut = (context) =>
+                    {
+                        var logoutUri = $"https://{Configuration["Auth0:Domain"]}/v2/logout?client_id={Configuration["Auth0:ClientId"]}";
+
+                        var postLogoutUri = context.Properties.RedirectUri;
+                        if (!string.IsNullOrEmpty(postLogoutUri))
+                        {
+                            if (postLogoutUri.StartsWith("/"))
+                            {
+                                // transform to absolute
+                                var request = context.Request;
+                                postLogoutUri = request.Scheme + "://" + request.Host + request.PathBase + postLogoutUri;
+                            }
+                            logoutUri += $"&returnTo={ Uri.EscapeDataString(postLogoutUri)}";
+                        }
+
+                        context.Response.Redirect(logoutUri);
+                        context.HandleResponse();
+
+                        return Task.CompletedTask;
+                    }
+                };
             });
 
             // Data repositories
