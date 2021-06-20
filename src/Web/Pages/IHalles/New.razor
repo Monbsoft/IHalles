@@ -1,10 +1,21 @@
 ﻿@page "/ihalles/new"
 @attribute [Authorize]
-<div class="card" style="width: 18rem;">
+<div class="card">
     <div class="card-body">
-        <h3>New</h3>
+        <h3>Create IHalle</h3>
+        <EditForm>
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <InputText id="name" @bind-Value="_halle.Name" />
+        </EditForm>
     </div>
 </div>
 @code {
+    private IHalle _halle = new IHalle();
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+    }
 
 }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Monbsoft.IHalles.Infrastructure.Data
 {
-    public class IHallesDbContext : IdentityDbContext
+    public class IHallesDbContext : DbContext
     {
         public IHallesDbContext(DbContextOptions<IHallesDbContext> options)
             : base(options)

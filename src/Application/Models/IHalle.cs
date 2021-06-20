@@ -7,33 +7,24 @@ namespace Monbsoft.IHalles.Application.Models
 {
     public class IHalle : BaseEntity, IAggregateRoot
     {
-        public IHalle(string name, Address address, string description, Location location)
+        public IHalle()
         {
-            Name = name;
-            Address = address;           
-            Description = description;
-            Location = location;
-        }
-
-        private IHalle()
-        {
-
         }
 
         [Required]
-        public Address Address { get; private set; } = new Address();
+        public Address Address { get; set; } = new Address();
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public DateTime Created { get; private set; } = DateTime.UtcNow;
-        public string CreatorId { get; private set; }
+        public DateTime Created { get; set; } = DateTime.UtcNow;
+        public string CreatorId { get; set; }
 
-        public string Description { get; private set; }
+        public string Description { get; set; }
         [Required]
-        public Location Location { get; private set; }
+        public Location Location { get; set; }
         [Required]
         [MaxLength(100, ErrorMessage = "Name cannot exceed 100 characters.")]
-        public string Name { get; private set; }
+        public string Name { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime? Updated { get; private set; }
+        public DateTime? Updated { get; set; }
 
     }
 }
