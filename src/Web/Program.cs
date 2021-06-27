@@ -23,7 +23,7 @@ namespace Monbsoft.IHalles.Web
                 var services = scope.ServiceProvider;
                 try
                 {
-                    var context = services.GetRequiredService<IHallesDbContext>();
+                    var context = services.GetRequiredService<HallesDbContext>();
                     //DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)

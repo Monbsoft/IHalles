@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Monbsoft.IHalles.Infrastructure.Data;
 
 namespace Monbsoft.IHalles.Infrastructure.Data.Migrations
 {
-    [DbContext(typeof(IHallesDbContext))]
-    partial class IHallesDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(HallesDbContext))]
+    [Migration("20210627143702_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace Monbsoft.IHalles.Infrastructure.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Monbsoft.IHalles.Application.Models.IHalle", b =>
+            modelBuilder.Entity("Monbsoft.IHalles.Application.Models.Halle", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -46,39 +48,47 @@ namespace Monbsoft.IHalles.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("IHalles");
+                    b.ToTable("Halles");
                 });
 
-            modelBuilder.Entity("Monbsoft.IHalles.Application.Models.IHalle", b =>
+            modelBuilder.Entity("Monbsoft.IHalles.Application.Models.Halle", b =>
                 {
                     b.OwnsOne("Monbsoft.IHalles.Application.Models.Address", "Address", b1 =>
                         {
-                            b1.Property<Guid>("IHalleId")
+                            b1.Property<Guid>("HalleId")
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<string>("City")
-                                .HasColumnType("nvarchar(max)");
+                                .IsRequired()
+                                .HasMaxLength(50)
+                                .HasColumnType("nvarchar(50)");
 
                             b1.Property<string>("PostalCode")
-                                .HasColumnType("nvarchar(max)");
+                                .IsRequired()
+                                .HasMaxLength(20)
+                                .HasColumnType("nvarchar(20)");
 
                             b1.Property<string>("Region")
-                                .HasColumnType("nvarchar(max)");
+                                .IsRequired()
+                                .HasMaxLength(20)
+                                .HasColumnType("nvarchar(20)");
 
                             b1.Property<string>("Street")
-                                .HasColumnType("nvarchar(max)");
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("nvarchar(100)");
 
-                            b1.HasKey("IHalleId");
+                            b1.HasKey("HalleId");
 
-                            b1.ToTable("IHalles");
+                            b1.ToTable("Halles");
 
                             b1.WithOwner()
-                                .HasForeignKey("IHalleId");
+                                .HasForeignKey("HalleId");
                         });
 
                     b.OwnsOne("Monbsoft.IHalles.Application.Models.Location", "Location", b1 =>
                         {
-                            b1.Property<Guid>("IHalleId")
+                            b1.Property<Guid>("HalleId")
                                 .HasColumnType("uniqueidentifier");
 
                             b1.Property<double>("Latitude")
@@ -87,12 +97,12 @@ namespace Monbsoft.IHalles.Infrastructure.Data.Migrations
                             b1.Property<double>("Longitude")
                                 .HasColumnType("float");
 
-                            b1.HasKey("IHalleId");
+                            b1.HasKey("HalleId");
 
-                            b1.ToTable("IHalles");
+                            b1.ToTable("Halles");
 
                             b1.WithOwner()
-                                .HasForeignKey("IHalleId");
+                                .HasForeignKey("HalleId");
                         });
 
                     b.Navigation("Address")

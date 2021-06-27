@@ -8,14 +8,14 @@ namespace Monbsoft.IHalles.Infrastructure.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "IHalles",
+                name: "Halles",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Address_City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address_PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address_Region = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address_Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Address_City = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Address_PostalCode = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Address_Region = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Address_Street = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatorId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -26,14 +26,14 @@ namespace Monbsoft.IHalles.Infrastructure.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_IHalles", x => x.Id);
+                    table.PrimaryKey("PK_Halles", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "IHalles");
+                name: "Halles");
         }
     }
 }

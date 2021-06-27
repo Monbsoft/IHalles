@@ -1,0 +1,27 @@
+﻿@page "/halles/new"
+@attribute [Authorize]
+@inject IMediator Mediator
+<div class="card">
+    <div class="card-body">
+        <h3>Create IHalle</h3>
+        <EditForm Model="@_request" OnValidSubmit="@HandleValidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <InputText id="name" @bind-Value="_request.Name" />
+        </EditForm>
+    </div>
+</div>
+@code {
+    private CreateHalleCommand _request = new CreateHalleCommand();
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+    }
+
+    private void HandleValidSubmit()
+    {
+        Mediator.Send(_request);
+    }
+
+}

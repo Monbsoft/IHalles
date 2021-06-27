@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Monbsoft.IHalles.Application.Models
 {
-    public class IHalle : BaseEntity, IAggregateRoot
+    public class Halle : BaseEntity, IAggregateRoot
     {
-        public IHalle()
+        public Halle()
         {
         }
 
