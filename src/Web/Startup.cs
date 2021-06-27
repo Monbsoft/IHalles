@@ -8,12 +8,14 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
+using Monbsoft.IHalles.Application.Extensions;
+using Monbsoft.IHalles.Application.Interfaces;
 using Monbsoft.IHalles.Infrastructure.Data;
 using Monbsoft.IHalles.Infrastructure.Data.Repositories;
 using Monbsoft.IHalles.Web.Data;
 using System;
 using System.Threading.Tasks;
-using IHalleRepository = Monbsoft.IHalles.Application.Interfaces.IHalleRepository;
 
 namespace Monbsoft.IHalles.Web
 {
@@ -30,7 +32,7 @@ namespace Monbsoft.IHalles.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<IHallesDbContext>(options =>
+            services.AddDbContext<HallesDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("IHallesConnection")));
             services.AddRazorPages();
@@ -68,6 +70,14 @@ namespace Monbsoft.IHalles.Web
                 // Configure the scope
                 options.Scope.Clear();
                 options.Scope.Add("openid");
+                options.Scope.Add("profile");
+                options.Scope.Add("email");
+
+                // Set the correct name claim type
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    NameClaimType = "name"
+                };
 
                 // Set the callback path, so Auth0 will call back to http://localhost:3000/callback
                 // Also ensure that you have added the URL as an Allowed Callback URL in your Auth0 dashboard
@@ -103,8 +113,13 @@ namespace Monbsoft.IHalles.Web
                 };
             });
 
+            services.AddLocalization();
+
             // Data repositories
             services.AddScoped<IHalleRepository, HalleRepository>();
+
+            // Use cases
+            services.AddApplication();
 
             services.AddSingleton<WeatherForecastService>();
         }
@@ -123,6 +138,14 @@ namespace Monbsoft.IHalles.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            var supportedCultures = new[] { "en-US", "fr-FR" };
+            var localizationOptions = new RequestLocalizationOptions()
+                .SetDefaultCulture(supportedCultures[0])
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
+
+            app.UseRequestLocalization(localizationOptions);
 
             //app.UseHttpsRedirection();
             app.UseStaticFiles();

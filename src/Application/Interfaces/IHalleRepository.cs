@@ -1,10 +1,8 @@
 ﻿using Monbsoft.IHalles.Application.Models;
-using System.Collections.Generic;
 
 namespace Monbsoft.IHalles.Application.Interfaces
 {
-    public interface IHalleRepository
+    public interface IHalleRepository : IAsyncRepository<Halle>
     {
-        IEnumerable<IHalle> GetLastHalles(int count = 10);
     }
 }

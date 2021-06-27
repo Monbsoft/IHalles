@@ -1,0 +1,50 @@
+﻿@page "/halles/new"
+@attribute [Authorize]
+@inject IStringLocalizer<Resource> Loc
+@inject IMediator Mediator
+<div class="card">
+    <div class="card-body">
+        <h3>@Loc["createHalle"]</h3>
+        <EditForm Model="@_request" OnValidSubmit="@HandleValidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <div class="mb-3">
+                <label for="nameInput" class="form-label">@Loc["name"]</label>
+                <InputText id="nameInput" class="form-control" @bind-Value="_request.Name" />
+            </div>
+            <div class="mb-3">
+                <label for="streetInput" class="form-label">@Loc["streetAddress"]</label>
+                <InputText id="streetInput" class="form-control" @bind-Value="_request.Street" />
+            </div>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="postalCodeInput" class="form-label">@Loc["postalCode"]</label>
+                    <InputText id="postalCodeInput" class="form-control" @bind-Value="_request.PostalCode" />
+                </div>
+                <div class="col-md-3">
+                    <label for="postalCodeInput" class="form-label">@Loc["region"]</label>
+                    <InputText id="postalCodeInput" class="form-control" @bind-Value="_request.Region" />
+                </div>
+                <div class="col-md-3">
+                    <label for="cityInput" class="form-label">@Loc["city"]</label>
+                    <InputText id="cityInput" class="form-control" @bind-Value="_request.City" />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </EditForm>
+    </div>
+</div>
+@code {
+    private CreateHalleCommand _request = new CreateHalleCommand();
+
+    protected override Task OnInitializedAsync()
+    {
+        return base.OnInitializedAsync();
+    }
+
+    private void HandleValidSubmit()
+    {
+        Mediator.Send(_request);
+    }
+
+}
