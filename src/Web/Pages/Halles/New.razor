@@ -4,7 +4,7 @@
 @inject IMediator Mediator
 <div class="card">
     <div class="card-body">
-        <h3>Create IHalle</h3>
+        <h3>@Loc["createHalle"]</h3>
         <EditForm Model="@_request" OnValidSubmit="@HandleValidSubmit">
             <DataAnnotationsValidator />
             <ValidationSummary />
@@ -21,7 +21,11 @@
                     <label for="postalCodeInput" class="form-label">@Loc["postalCode"]</label>
                     <InputText id="postalCodeInput" class="form-control" @bind-Value="_request.PostalCode" />
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-3">
+                    <label for="postalCodeInput" class="form-label">@Loc["region"]</label>
+                    <InputText id="postalCodeInput" class="form-control" @bind-Value="_request.Region" />
+                </div>
+                <div class="col-md-3">
                     <label for="cityInput" class="form-label">@Loc["city"]</label>
                     <InputText id="cityInput" class="form-control" @bind-Value="_request.City" />
                 </div>

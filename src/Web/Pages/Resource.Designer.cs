@@ -79,6 +79,15 @@ namespace Monbsoft.IHalles.Web.Pages {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Create Halle.
+        /// </summary>
+        internal static string createHalle {
+            get {
+                return ResourceManager.GetString("createHalle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Name.
         /// </summary>
         internal static string name {
@@ -93,6 +102,15 @@ namespace Monbsoft.IHalles.Web.Pages {
         internal static string postalCode {
             get {
                 return ResourceManager.GetString("postalCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à State.
+        /// </summary>
+        internal static string region {
+            get {
+                return ResourceManager.GetString("region", resourceCulture);
             }
         }
         

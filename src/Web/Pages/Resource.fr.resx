@@ -123,11 +123,17 @@
   <data name="city" xml:space="preserve">
     <value>Commune</value>
   </data>
+  <data name="createHalle" xml:space="preserve">
+    <value>Créer une halle</value>
+  </data>
   <data name="name" xml:space="preserve">
     <value>Nom</value>
   </data>
   <data name="postalCode" xml:space="preserve">
     <value>Code postal</value>
+  </data>
+  <data name="region" xml:space="preserve">
+    <value>Région</value>
   </data>
   <data name="streetAddress" xml:space="preserve">
     <value>Ligne d'adresse</value>

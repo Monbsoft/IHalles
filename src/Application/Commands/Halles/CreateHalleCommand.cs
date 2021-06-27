@@ -2,6 +2,7 @@
 using Monbsoft.IHalles.Application.Interfaces;
 using Monbsoft.IHalles.Application.Models;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,14 +13,15 @@ namespace Monbsoft.IHalles.Application.Commands
         public CreateHalleCommand()
         {
         }
+        [Required]
         public string Name { get; set; }
-
+        [Required]
         public string Street { get; set; }
-
+        [Required]
         public string City  { get; set; }
-
+        [Required]
         public string Region { get; set; }
-
+        [Required]
         public string PostalCode { get; set; }
     }
 
@@ -36,8 +38,9 @@ namespace Monbsoft.IHalles.Application.Commands
             return _halleRepository.AddAsync(new Halle
             {
                 Name = request.Name,
-                Address = new Address(request.Street, request.City, request.Region, request.PostalCode)
-            });
+                Address = new Address(request.Street, request.City, request.Region, request.PostalCode),
+                Location = new Location(0,0)
+            }); ;
 
         }
     }
