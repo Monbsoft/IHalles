@@ -14,7 +14,13 @@ namespace Monbsoft.IHalles.Application.Commands
         }
         public string Name { get; set; }
 
-        public Address Address { get; set; }
+        public string Street { get; set; }
+
+        public string City  { get; set; }
+
+        public string Region { get; set; }
+
+        public string PostalCode { get; set; }
     }
 
     public class CreateHalleCommandHandler : IRequestHandler<CreateHalleCommand, Halle>
@@ -30,7 +36,7 @@ namespace Monbsoft.IHalles.Application.Commands
             return _halleRepository.AddAsync(new Halle
             {
                 Name = request.Name,
-                Address = request.Address
+                Address = new Address(request.Street, request.City, request.Region, request.PostalCode)
             });
 
         }
